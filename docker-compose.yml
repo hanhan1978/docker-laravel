@@ -1,0 +1,29 @@
+version: '2'
+services:
+  laravel:
+    build: .
+    ports:
+        - "80:80"
+    networks:
+      app:
+        aliases:
+          - laravel.local
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=developer
+      - MYSQL_PASSWORD=developer
+    volumes:
+      - ./var/mysql:/var/lib/mysql
+    networks:
+      - app
+  selenium:
+    image: hanhan1978/selenium-standalone-chrome-ja:latest
+    networks:
+      app:
+        aliases:
+          - selenium.local
+networks:
+  app:
