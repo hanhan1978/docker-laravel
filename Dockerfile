@@ -6,11 +6,8 @@ MAINTAINER hanhan1978 <ryo.tomidokoro@gmail.com>
 # install libraries
 RUN apk upgrade --update \
     && apk add --no-cache \
-       git \
-       zlib-dev \
-       nginx \
-       libxml2-dev \
-    && docker-php-ext-install  pdo_mysql zip soap
+       git zlib-dev nginx libxml2-dev libzip-dev \
+    && docker-php-ext-install pdo_mysql zip soap \
     && mkdir /run/nginx
 
 # install composer
